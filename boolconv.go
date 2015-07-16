@@ -44,11 +44,11 @@ func NewBoolByInterface(i interface{}) (Bool, error) {
 
 	switch val.Kind() {
 	case reflect.Bool:
-		return NewBoolBybool(i.(bool)), nil
+		return NewBoolBybool((val.Interface()).(bool)), nil
 	case reflect.Uint8:
-		return Bool(i.(byte)), nil
+		return Bool((val.Interface()).(byte)), nil
 	case reflect.String:
-		if b, err := strconv.ParseBool(i.(string)); err == nil {
+		if b, err := strconv.ParseBool((val.Interface()).(string)); err == nil {
 			return NewBoolBybool(b), nil
 		}
 	case reflect.Slice:

@@ -32,6 +32,8 @@ func TestNewBoolBybool(t *testing.T) {
 
 func TestNewBoolByInterface(t *testing.T) {
 
+	// Elem
+
 	_, err := NewBoolByInterface(true)
 	if err != nil {
 		t.Error("error should not be nil")
@@ -81,6 +83,15 @@ func TestNewBoolByInterface(t *testing.T) {
 	if err != nil {
 		t.Error("error should not be nil")
 	}
+
+	// pointer
+	v := "true"
+	_, err = NewBoolByInterface(&v)
+	if err != nil {
+		t.Error("error should not be nil")
+	}
+
+	// unsupported
 
 	_, err = NewBoolByInterface([]string{"test"})
 	if err == nil {

@@ -16,17 +16,17 @@ const (
 	True
 )
 
-// NewBoolByBytes converts bytes into Bool.
-func NewBoolByBytes(b []byte) Bool {
-	return Bool(b[0])
-}
-
-// NewBoolBybool converts bool into Bool.
-func NewBoolBybool(b bool) Bool {
+// NewBool converts bool into Bool.
+func NewBool(b bool) Bool {
 	if b {
 		return True
 	}
 	return False
+}
+
+// BtoB converts bytes into Bool.
+func BtoB(b []byte) Bool {
+	return Bool(b[0])
 }
 
 // NewBoolByInterface converts interface into Bool.
@@ -43,14 +43,18 @@ func NewBoolByInterface(i interface{}) (Bool, error) {
 	}
 
 	switch val.Kind() {
+
 	case reflect.Bool:
-		return NewBoolBybool((val.Interface()).(bool)), nil
+		return NewBool((val.Interface()).(bool)), nil
+
 	case reflect.Uint8:
 		return Bool((val.Interface()).(byte)), nil
+
 	case reflect.String:
 		if b, err := strconv.ParseBool((val.Interface()).(string)); err == nil {
-			return NewBoolBybool(b), nil
+			return NewBool(b), nil
 		}
+
 	case reflect.Slice:
 		v := val.Index(0)
 		if b, ok := (v.Interface()).(byte); ok {

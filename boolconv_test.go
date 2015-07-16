@@ -2,28 +2,28 @@ package boolconv
 
 import "testing"
 
-func TestNewBoolByBytes(t *testing.T) {
+func TestNewBool(t *testing.T) {
 
-	ret := NewBoolByBytes([]byte{0})
+	ret := NewBool(false)
 	if ret == True {
 		t.Error("expected boolconv.Flase got boolconv.True")
 	}
 
-	ret = NewBoolByBytes([]byte{1})
+	ret = NewBool(true)
 	if ret == False {
 		t.Error("expected boolconv.True got boolconv.False")
 	}
 
 }
 
-func TestNewBoolBybool(t *testing.T) {
+func TestBtoB(t *testing.T) {
 
-	ret := NewBoolBybool(false)
+	ret := BtoB([]byte{0})
 	if ret == True {
 		t.Error("expected boolconv.Flase got boolconv.True")
 	}
 
-	ret = NewBoolBybool(true)
+	ret = BtoB([]byte{1})
 	if ret == False {
 		t.Error("expected boolconv.True got boolconv.False")
 	}
@@ -85,6 +85,7 @@ func TestNewBoolByInterface(t *testing.T) {
 	}
 
 	// pointer
+
 	v := "true"
 	_, err = NewBoolByInterface(&v)
 	if err != nil {

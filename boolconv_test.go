@@ -82,7 +82,6 @@ func TestNewBoolByInterface(t *testing.T) {
 		t.Error("error should not be nil")
 	}
 
-	// should err
 	_, err = NewBoolByInterface([]string{"test"})
 	if err == nil {
 		t.Error("error is occurred")

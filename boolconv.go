@@ -39,7 +39,9 @@ func NewBoolByInterface(i interface{}) (Bool, error) {
 	}
 
 	if t.Name() == "Bool" {
-		return (val.Interface()).(Bool), nil
+		if b, ok := (val.Interface()).(Bool); ok {
+			return b, nil
+		}
 	}
 
 	switch val.Kind() {

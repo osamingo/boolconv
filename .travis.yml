@@ -2,16 +2,14 @@ sudo: false
 language: go
 
 go:
-  - 1.4.2
+  - 1.5.1
 
 before_install:
-  - go get golang.org/x/tools/cmd/vet
   - go get golang.org/x/tools/cmd/cover
-  - go get github.com/golang/lint/golint
+  - go get github.com/osamingo/gochic
 
 before_script:
-  - go vet ./...
-  - golint ./... | xargs -r false
+  - gochic ./...
 
 script:
   - go test -v -coverprofile=coverage.txt -covermode=count ./...
